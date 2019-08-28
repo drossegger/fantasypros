@@ -24,9 +24,10 @@ fp_build_query_list <- function(season     = NULL,
 }
 
 
-fp_build_url <- function(base = "https://www.fantasypros.com", path_list = NULL){
+fp_build_url <- function(base = "https://www.fantasypros.com", path_list = NULL, filter = NULL){
   fp_url <- httr::parse_url(base)
   fp_url$path <- path_list
+  if (!is.null(filter)) fp_url$query <- list(filters=filter)
 
   fp_url
 }

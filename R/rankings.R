@@ -37,14 +37,15 @@
 #'
 #' # Individual Defensive Player ECR
 #' fp_draft_rankings(pos = "IDP")
-fp_draft_rankings <- function(pos = "overall", scoring = c("half", "ppr", "std")) {
+fp_draft_rankings <- function(pos = "overall", scoring = c("half", "ppr", "std"), filter = NULL) {
 
   scoring <- match.arg(scoring)
 
   pos_path <- fp_format_rankings_pos_path(scoring = scoring, pos = pos)
 
   fp_url <- fp_build_url(
-    path_list = list("nfl", "rankings", pos_path)
+    path_list = list("nfl", "rankings", pos_path),
+    filter = filter
   )
 
   fp_url_string <- httr::build_url(fp_url)
